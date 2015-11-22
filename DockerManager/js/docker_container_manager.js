@@ -1,0 +1,76 @@
+//This JS files contains the code to manage the Docker
+
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+	
+//alert("Hello in");
+	//Call the getContainerInfo()
+	getContainerInfo();
+	
+});
+
+function getContainerInfo(){
+	/**/
+		//Ajax request to Docker API, we are using REST End point /containers/json?all=1
+				 $.ajax({
+				url :rest_list_containers ,
+				dataType : "json",
+				success :function(result) {
+					getContainerInfoCallback(result);		
+				},
+				 error: function(){
+					    alert('Fail To Connect to the Docker API, Please try Again Later!!!');
+					  }
+			});
+			
+}
+
+
+//This function Invoked after Successful Docker Info Call
+function getContainerInfoCallback(result){	
+	//alert(result.ID);
+	
+				//Now Set the Values
+				if(result!=null){
+					
+					//alert(result.length);
+					
+					$.each( result, function( key, value ) {
+						//  alert( key + ": " + value.Names[0] );
+					var container_template=$("#container_template").html()
+						.replace(new RegExp("{{container_number}}","g"),key)  
+						.replace(new RegExp("{{container_url}}","g"),"single_container_management.html?cid="+value.Id+"&image="+value.Image+"&name="+value.Names[0])
+						.replace(new RegExp("{{container_name}}","g"),value.Names[0]);
+
+						$("#_show_container").append(container_template);
+
+						
+						});
+					//	$("#_docker_ID").html(result.ID);
+						//$("#_docker_no_of_containers").html(result.Containers);
+						//$("#_docker_no_of_images").html(result.Images)
+				
+				}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

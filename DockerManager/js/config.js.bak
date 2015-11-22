@@ -1,0 +1,8 @@
+//This is Docker Configuration
+
+var ip_address="52.24.56.100";
+var port="5555";
+var ip_url="http://"+ip_address+":"+port;
+var rest_list_containers=ip_url+"/containers/json?all=1";
+var rest_info=ip_url+"/info";
+var rest_containers=ip_url+"/containers";
