@@ -21,3 +21,5 @@ To Run This Project:
 4. Add the Port on which the Docker API is Listening
 5. Now Open the home.html in Page folder.
 6. Now you will be able to manage your docker by using the Dashboard
+7. Enjoy!!!
+
