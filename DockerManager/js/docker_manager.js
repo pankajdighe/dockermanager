@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 	
-//	alert("Hello in");
+
 	//Call the getDockerInfo()
 	getDockerInfo();
 	

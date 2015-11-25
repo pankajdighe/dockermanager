@@ -1,13 +1,5 @@
 //This JS files contains the code to manage the Docker
 
-
-
-
-
-
-
-
-
 $(document).ready(function(){
 	
 //alert("Hello in");
@@ -32,7 +24,6 @@ function getContainerInfo(){
 			
 }
 
-
 //This function Invoked after Successful Docker Info Call
 function getContainerInfoCallback(result){	
 	//alert(result.ID);
@@ -41,7 +32,7 @@ function getContainerInfoCallback(result){
 				if(result!=null){
 					
 					//alert(result.length);
-					
+					//alert(result);
 					$.each( result, function( key, value ) {
 						//  alert( key + ": " + value.Names[0] );
 					var container_template=$("#container_template").html()

@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,10 +23,36 @@
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="../js/config.js"></script>
-   <script src="../js/docker_manager.js"></script>
-   
 
+<script id="network_template">
+<div class="col-lg-3 col-md-6">
+<div class="panel panel-green">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-tasks fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge">{{network_number}}</div>
+                <div>{{network_name}}</div>
+            </div>
+        </div>
+    </div>
+    <a href="{{network_url}}">
+        <div class="panel-footer">
+            <span class="pull-left">View Details</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+</div>
+</div>
+</script>
+
+<script src="../js/docker_network_manager.js"></script>
+<script src="../js/config.js"></script>
+
+   
 </head>
 
 <body>
@@ -48,9 +73,6 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-               
-               
-               
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -92,23 +114,22 @@
                         <li>
                             <a href="container_management.html"><i class="fa fa-table fa-fw"></i> Manage Containers</a>
                         </li>
-
+                        
                         <li>
                             <a href="image_management.html"><i class="fa fa-table fa-fw"></i> Manage Images</a>
                         </li>
                         
-                        <li>
+                       	  <li>
                             <a href="volume_management.html"><i class="fa fa-table fa-fw"></i> Manage Volumes</a>
                         </li>
 
 						<li>
                             <a href="network_management.html"><i class="fa fa-table fa-fw"></i> Manage Networks</a>
                         </li>
-
-                       <li>
+                        
+                        <li>
                             <a href="version_management.html"><i class="fa fa-table fa-fw"></i> Manage Versions</a>
                         </li>
-                       
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -127,41 +148,17 @@
                 </div>
                 <!-- /.row -->
 
-       <div class="row">
-	      <div class="col-lg-12">
-				<div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Docker Informarion
-                        </div>
+		       <div class="row">
+	    			<div class="col-lg-12">
+						<div class="panel panel-default">
+                        	<div class="panel-heading">
+                            	<i class="fa fa-clock-o fa-fw"></i> Networks
+                        	</div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                        
-                        <div class="row">
-	     				 <div class="col-lg-7">
-                        	<div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> ID
-                                    <span class="pull-right text-muted small"><em id="_docker_ID"></em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-list fa-fw"></i> No Of Container
-                                    <span class="pull-right text-muted small"><em id="_docker_no_of_containers"></em>
-                                    </span>
-                                </a>    
-                                    <a href="#" class="list-group-item">
-                                    <i class="fa fa-file-image-o fa-fw"></i> No Of Images
-                                    <span class="pull-right text-muted small"><em id="_docker_no_of_images"></em>
-                                    </span>
-                                </a>                      	
-						   </div>
-						  </div>
+                        	<div class="panel-body" id="_show_network">			   
 						</div>
-						   
-				</div>
-         </div>
-	   </div>
-
+		            </div>
+			   </div>
             </div>
             <!-- /.container-fluid -->
         </div>

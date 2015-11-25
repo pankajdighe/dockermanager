@@ -1,21 +1,16 @@
 //This JS files contains the code to manage the Docker
 
-
 var container_id="";
 var container_image="";
 var container_name="";
-
-
-
-
 
 $(document).ready(function(){
 	
 //alert("Hello in");
 
 	var sPageURL = window.location.search.substring(1);
+	
 	var sURLVariables = sPageURL.split('&');
-
 
 	
 	for (var i = 0; i < sURLVariables.length; i++)
@@ -37,17 +32,12 @@ $(document).ready(function(){
 			{	
 				container_name=sParameterName[1];
 				//alert(container_object);
-			}
-			
-			
-		
+			}		
  }
 	
 	
 	if(container_id!=null && container_image!=null && container_name!=null  ){
-		
 		//alert("Got all values");
-		
 		
 		getAllInfoContainer();
 	}

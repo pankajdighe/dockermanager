@@ -25,7 +25,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	<script src="../js/config.js"></script>
- 	<script src="../js/single_docker_container_manager.js"></script>
+ 	<script src="../js/single_docker_image_manager.js"></script>
 </head>
 
 <body>
@@ -95,17 +95,18 @@
                             <a href="image_management.html"><i class="fa fa-table fa-fw"></i> Manage Images</a>
                         </li>
                         
-                         <li>
+                          <li>
                             <a href="volume_management.html"><i class="fa fa-table fa-fw"></i> Manage Volumes</a>
                         </li>
 
 						<li>
                             <a href="network_management.html"><i class="fa fa-table fa-fw"></i> Manage Networks</a>
                         </li>
-                        
-                        <li>
+                       
+                       <li>
                             <a href="version_management.html"><i class="fa fa-table fa-fw"></i> Manage Versions</a>
                         </li>
+                       
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -118,7 +119,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dash Board</h1>
+                        <h1 class="page-header"> Image Dash Board</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -128,101 +129,42 @@
 	      <div class="col-lg-12">
 				<div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Container
+                            <i class="fa fa-clock-o fa-fw"></i> Image
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body" id="_show_container_details">
+                        <div class="panel-body" id="_show_image_details">
                         
 		                       <div class="row">
 			     				 <div class="col-lg-7">
 		                        	<div class="list-group">
 		                                <a href="#" class="list-group-item">
 		                                    <i class="fa fa-comment fa-fw"></i> Name
-		                                    <span class="pull-right text-muted small"><em id="_container_name"></em>
+		                                    <span class="pull-right text-muted small"><em id="_image_name"></em>
 		                                    </span>
 		                                </a>
 		                                <a href="#" class="list-group-item">
-		                                    <i class="fa fa-list fa-fw"></i> Container Image
-		                                    <span class="pull-right text-muted small"><em id="_container_image"></em>
-		                                    </span>
-		                                </a>    
-		                                  <a href="#" class="list-group-item">
-		                                    <i class="fa fa-list fa-fw"></i> Container Restart Count
-		                                    <span class="pull-right text-muted small"><em id="_container_restart_count"></em>
-		                                    </span>
-		                                </a>   
-		                                 <a href="#" class="list-group-item">
-		                                    <i class="fa fa-list fa-fw"></i> Container Driver
-		                                    <span class="pull-right text-muted small"><em id="_container_container_driver"></em>
-		                                    </span>
-		                                </a>  
-		                                  <a href="#" class="list-group-item">
-		                                    <i class="fa fa-list fa-fw"></i> Container ExecDriver
-		                                    <span class="pull-right text-muted small"><em id="_container_container_execdriver"></em>
+		                                    <i class="fa fa-list fa-fw"></i> Architechture
+		                                    <span class="pull-right text-muted small"><em id="_architechture_name"></em>
 		                                    </span>
 		                                </a>
-		                                 
-		                                           	
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-list fa-fw"></i> OS
+		                                    <span class="pull-right text-muted small"><em id="_os_name"></em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-list fa-fw"></i> Virtual Size
+		                                    <span class="pull-right text-muted small"><em id="_virtualsize_name"></em>
+		                                    </span>
+		                                </a> 
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-list fa-fw"></i> Docker Version
+		                                    <span class="pull-right text-muted small"><em id="_docker_version"></em>
+		                                    </span>
+		                                </a>
+		                                          	
 								   </div>
-								  </div>
-							
-							 <div class="col-lg-5">	  
-								  <div class="panel panel-default">
-                        						<div class="panel-heading">
-                            						<i class="fa fa-clock-o fa-fw"></i> Container State
-                       							 </div>
-                       							  <div class="panel-body">
-                       							  
-                       							  	<div class="list-group">
-							                                <a href="#" class="list-group-item">
-							                                    <i class="fa fa-comment fa-fw"></i> State
-							                                    <span class="pull-right text-muted small"><em id="_container_state"></em>
-							                                    </span>
-							                                </a>
-							                                <a href="#" class="list-group-item">
-							                                    <i class="fa fa-list fa-fw"></i> Container Running
-							                                    <span class="pull-right text-muted small"><em id="_container_running"></em>
-							                                    </span>
-							                                </a>    
-							                                 <a href="#" class="list-group-item">
-							                                    <i class="fa fa-list fa-fw"></i> Container Paused
-							                                    <span class="pull-right text-muted small"><em id="_container_paused"></em>
-							                                    </span>
-							                                </a>    
-							                                  <a href="#" class="list-group-item">
-							                                    <i class="fa fa-list fa-fw"></i> Container Restarting
-							                                    <span class="pull-right text-muted small"><em id="_container_restarting"></em>
-							                                    </span>
-							                                </a> 
-							                                  <a href="#" class="list-group-item">
-							                                    <i class="fa fa-list fa-fw"></i>Started At
-							                                    <span class="pull-right text-muted small"><em id="_container_started_at"></em>
-							                                    </span>
-							                                </a> 
-							                                <a href="#" class="list-group-item">
-							                                    <i class="fa fa-list fa-fw"></i>Finished At
-							                                    <span class="pull-right text-muted small"><em id="_container_finished_at"></em>
-							                                    </span>
-							                                </a> 
-							                                 <a href="#" class="list-group-item">
-		                                   						 <i class="fa fa-list fa-fw"></i> Export Container
-		                                    					<span class="pull-right text-muted small"><em id="_container_container_export"></em>
-		                                    					</span>
-		                                					</a> 
-		                                					 <a href="#" class="list-group-item">
-		                                   						 <i class="fa fa-list fa-fw"></i> Download Container Archieve
-		                                    					<span class="pull-right text-muted small"><em id="_container_container_archieve"></em>
-		                                    					</span>
-		                                					</a> 
-		                                           	
-								  				 </div>
-                       							  
-                       							  
-                       							  
-                       							  </div>
-								  </div>
-							</div>	  
-								  
+								  </div>					  
 								</div>
 						   
 				</div>
