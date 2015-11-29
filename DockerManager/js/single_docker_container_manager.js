@@ -46,6 +46,8 @@ $(document).ready(function(){
 	$("#_stop_container_button").click(stop_container);
 	$("#_pause_container_button").click(pause_container);
 	$("#_unpause_container_button").click(unpause_container);
+	//$("#_delete_container_button").click(delete_container);
+	$("#_kill_container_button").click(kill_container);
 	
 	$("#_refresh_button").click(refresh_page);
 	
@@ -83,6 +85,7 @@ function getAllInfoContainerCallback(result){
 	$("#_container_container_execdriver").html(result.ExecDriver);
 	$("#_container_container_export").html("<a href=\""+rest_containers+"/"+container_id+"/export"+"\">Export Container</a>");
 	$("#_container_container_archieve").html("<a href=\""+rest_containers+"/"+container_id+"/archive?path=/root"+"\">Download Archieve</a>");
+	$("#_container_container_logs").html("<a href=\""+rest_containers+"/"+container_id+"/logs?stderr=1&stdout=1"+"\">Download Logs</a>");
 	
 	
 	//State Information
@@ -216,7 +219,56 @@ function unpause_container_callback(result){
 }
 
 
+function delete_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+			url :rest_containers+"/"+container_id,
+			type:"DELETE",
+			//dataType : "json",
+			success :function(result) {
+				delete_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
+				  }
+		});
+}
 
+
+function delete_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	
+	//$("#message_modal_success_delete").modal();
+	location.href="/container_management.html";
+}
+
+function kill_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/kill" ,
+			dataType : "json",
+			success :function(result) {
+				kill_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/start");
+				  }
+		});
+}
+
+
+function kill_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	
+	$("#message_modal_success_kill").modal();
+}
 
 
 

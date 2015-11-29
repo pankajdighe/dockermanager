@@ -142,7 +142,7 @@
 		                                    </span>
 		                                </a>
 		                                <a href="#" class="list-group-item">
-		                                    <i class="fa fa-list fa-fw"></i> Container Image
+		                                    <i class="fa fa-list fa-fw"></i>Image ID
 		                                    <span class="pull-right text-muted small"><em id="_container_image"></em>
 		                                    </span>
 		                                </a>    
@@ -182,7 +182,8 @@
 						                                <button type="button" class="btn btn-success" id="_stop_container_button">Stop</button>
 						                                <button type="button" class="btn btn-info" id="_pause_container_button">Pause</button>
 						                                <button type="button" class="btn btn-warning" id="_unpause_container_button">UnPause</button>
-						                                <button type="button" class="btn btn-danger" id="_delete_container_button">Delete</button>
+						                               <!-- <button type="button" class="btn btn-danger" id="_delete_container_button">Delete</button>-->
+													   <button type="button" class="btn btn-danger" id="_kill_container_button">Kill</button>
 						                            
 						                            </p>
 
@@ -238,6 +239,11 @@
 		                                					 <a href="#" class="list-group-item">
 		                                   						 <i class="fa fa-list fa-fw"></i> Download Container Archieve
 		                                    					<span class="pull-right text-muted small"><em id="_container_container_archieve"></em>
+		                                    					</span>
+		                                					</a> 
+															<a href="#" class="list-group-item">
+		                                   						 <i class="fa fa-list fa-fw"></i> Download Container Log
+		                                    					<span class="pull-right text-muted small"><em id="_container_container_logs"></em>
 		                                    					</span>
 		                                					</a> 
 		                                           	
@@ -325,6 +331,43 @@
 					      </div>
 					    </div>
 					  </div><!--End of Modal-->  
+					  
+					  <div class="modal fade" id="message_modal_success_delete" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Message!!</h4>
+					        </div>
+					        <div class="modal-body">
+					          <p>Container Deleted Successfully!!!</p>
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					    </div>
+					  </div><!--End of Modal-->  
+					  
+					    
+					  <div class="modal fade" id="message_modal_success_kill" role="dialog">
+					    <div class="modal-dialog modal-sm">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Message!!</h4>
+					        </div>
+					        <div class="modal-body">
+					          <p>Container Killed Successfully!!!</p>
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					    </div>
+					  </div><!--End of Modal-->  
+					  
+					  
 
             </div>
             <!-- /.container-fluid -->
