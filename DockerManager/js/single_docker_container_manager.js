@@ -42,6 +42,13 @@ $(document).ready(function(){
 		getAllInfoContainer();
 	}
 	
+	$("#_start_container_button").click(start_container);
+	$("#_stop_container_button").click(stop_container);
+	$("#_pause_container_button").click(pause_container);
+	$("#_unpause_container_button").click(unpause_container);
+	
+	$("#_refresh_button").click(refresh_page);
+	
 });
 
 
@@ -86,9 +93,127 @@ function getAllInfoContainerCallback(result){
 	$("#_container_started_at").html(result.State.StartedAt);
 	$("#_container_finished_at").html(result.State.FinishedAt);
 	
+setManageOption(result);
 }
 
 
+function start_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/start" ,
+			dataType : "json",
+			success :function(result) {
+				start_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/start");
+				  }
+		});
+}
+
+function start_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	$("#message_modal_success_start").modal();
+	//location.reload();
+
+}
+
+function setManageOption(result){
+	
+	
+	if(result.State.Running)
+		$( "#_start_container_button" ).toggleClass( "disabled" );
+	
+	if(result.State.Paused)
+		$( "#_pause_container_button" ).toggleClass( "disabled" );
+	
+}
+
+
+function stop_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/stop" ,
+			dataType : "json",
+			success :function(result) {
+				stop_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/start");
+				  }
+		});
+}
+
+function stop_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	
+	$("#message_modal_success_stop").modal();
+}
+
+
+function refresh_page(){
+	location.reload();
+}
+
+
+function pause_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/pause" ,
+			dataType : "json",
+			success :function(result) {
+				pause_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/pause");
+				  }
+		});
+}
+
+
+function pause_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	
+	$("#message_modal_success_pause").modal();
+}
+
+
+function unpause_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/unpause" ,
+			dataType : "json",
+			success :function(result) {
+				unpause_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/start");
+				  }
+		});
+}
+
+
+function unpause_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	
+	$("#message_modal_success_unpause").modal();
+}
 
 
 
