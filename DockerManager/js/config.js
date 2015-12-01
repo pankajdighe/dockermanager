@@ -2,7 +2,7 @@
 
 
 
-var ip_address="";
+var ip_address="52.34.147.69";
 var port="5555";
 var ip_url="http://"+ip_address+":"+port;
 

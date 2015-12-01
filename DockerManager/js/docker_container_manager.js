@@ -6,6 +6,10 @@ $(document).ready(function(){
 	//Call the getContainerInfo()
 	getContainerInfo();
 	
+	
+	
+	$("#_button_create_conainer").click(create_container);
+	
 });
 
 function getContainerInfo(){
@@ -53,8 +57,85 @@ function getContainerInfoCallback(result){
 }
 
 
+function create_container(){
+	/**/
+		//Ajax request to Docker API, we are using REST End point /containers/json?all=1
+				/* $.ajax({
+				url :rest_list_containers ,
+				dataType : "json",
+				success :function(result) {
+					getContainerInfoCallback(result);		
+				},
+				 error: function(){
+					    alert('Fail To Connect to the Docker API, Please try Again Later!!!');
+					  }
+			});*/
+			var image=$("#select_image").val();
+			var command=$("#input_command").val();
+			var command_array;
+			
+			alert(image+ "  "+command);
+			
+			
+			if(command!=null){
+			
+			command_array=command.split(",");
+			
+			
+			
+				if(command_array.length>0){
+				
+							  var data=new Object();
+						 data.Image=image;
+						 data.AttachStdin=false;
+						 data.AttachStdout=true;
+						 data.AttachStderr=true;
+						 data.Tty=true;
+						 data.Cmd=command_array;
+						 data.OpenStdin=true;
+						 data.StdinOnce=false;
+				
+						$.ajax({
+						type:"POST",
+						url :rest_containers+"/create" ,
+						dataType : "json",
+						contentType:"application/json",
+						//data:data,
+						 crossDomain: true,
+						data:{"Image":image,"Cmd":["/bin/bash", "-c", "tail -f /var/log/dmesg"]},
+						success :function(result) {
+							getCreateContainerInfoCallback(result);		
+						},
+						 error: function(){
+								alert('Fail To Connect to the Docker API, Please try Again Later!!!');
+							  }
+					});
+					
+					/*$.post(rest_containers+"/create",
+						{
+							"Image": "ubuntu",
+							"Cmd":["/bin/bash", "-c", "tail -f /var/log/dmesg"]
+						},
+						function(data, status){
+							alert("Data: " + data + "\nStatus: " + status);
+						});*/
+					
+				
+				
+				}
+				
+			}
+			//alert(command_array.length);
+			
+			
+			
+			
+}
 
 
+function getCreateContainerInfoCallback(result){
+alert("Container Created Successfully!!!");
+}
 
 
 
