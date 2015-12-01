@@ -21,8 +21,8 @@ function getNetworksInfo()
 						$.each( result, function( key, value ) {
 						var network_template=$("#network_template").html()
 						.replace(new RegExp("{{network_number}}","g"),key)
-						.replace(new RegExp("{{network_name}}","g"),value.Scope);
-//						.replace(new RegExp("{{network_url}}","g"),"single_network_management.html?iid="+value.Id);
+						.replace(new RegExp("{{network_name}}","g"),value.Name)
+						.replace(new RegExp("{{network_url}}","g"),"single_network_management.html?nid="+value.Id);
 						
 						
 						$("#_show_network").append(network_template);						
