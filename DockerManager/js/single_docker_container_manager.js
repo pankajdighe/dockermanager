@@ -48,6 +48,7 @@ $(document).ready(function(){
 	$("#_unpause_container_button").click(unpause_container);
 	//$("#_delete_container_button").click(delete_container);
 	$("#_kill_container_button").click(kill_container);
+	$("#_restart_container_button").click(restart_container);
 	
 	$("#_refresh_button").click(refresh_page);
 	
@@ -93,8 +94,8 @@ function getAllInfoContainerCallback(result){
 	$("#_container_running").html((result.State.Running) ? "Running":"Not Running");
 	$("#_container_paused").html((result.State.Paused) ? "Paused":"Not Paused");
 	$("#_container_restarting").html((result.State.Restarting) ? "Restarting":"Not Restarting");
-	$("#_container_started_at").html(result.State.StartedAt);
-	$("#_container_finished_at").html(result.State.FinishedAt);
+	$("#_container_started_at").html(new Date(result.State.StartedAt).toDateString());
+	$("#_container_finished_at").html(new Date(result.State.FinishedAt).toDateString());
 	
 setManageOption(result);
 }
@@ -270,5 +271,29 @@ function kill_container_callback(result){
 	$("#message_modal_success_kill").modal();
 }
 
+function restart_container(){
+	
+//	alert("Hello");
+	
+	 $.ajax({
+		 	method:"POST",
+			url :rest_containers+"/"+container_id+"/restart?t=5" ,
+			dataType : "json",
+			success :function(result) {
+				restart_container_callback(result);		
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id+"/restart?t=5");
+				  }
+		});
+}
+
+function restart_container_callback(result){
+	
+	//alert("Successfully Started the Container..");
+	$("#message_modal_success_restart").modal();
+	//location.reload();
+
+}
 
 

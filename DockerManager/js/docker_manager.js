@@ -1,7 +1,15 @@
+
+
+
 //This JS files contains the code to manage the Docker
 $(document).ready(function(){
 	//Call the getDockerInfo()
 	getDockerInfo();
+	
+	
+	//high chart start
+	
+	
 });
 
 function getDockerInfo(){
@@ -22,6 +30,8 @@ function getDockerInfo(){
 function getDockerInfoCallback(result){	
 	//Now Set the Values
 	if(result!=null){
+	
+		$("#_docker_name").html(result.Name);
 		$("#_docker_ID").html(result.ID);
 		$("#_docker_no_of_containers").html(result.Containers);
 		$("#_docker_no_of_images").html(result.Images);
@@ -42,5 +52,6 @@ function getDockerInfoCallback(result){
 		$("#_docker_no_of_cpu").html(result.NCPU);
 		$("#_docker_total_memory").html(result.MemTotal);
 		$("#_docker_server_version").html(result.ServerVersion);
+		$("#_docker_sys_time").html(new Date(result.SystemTime).toDateString());
 	}
 }
