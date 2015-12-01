@@ -20,7 +20,7 @@ $(document).ready(function(){
 			if (sParameterName[0] == "name")
 			{	
 				image_name=sParameterName[1];
-				alert(image_name);
+				//alert(image_name);
 			}		
  	}
 	
