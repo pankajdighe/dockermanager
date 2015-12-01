@@ -2,8 +2,8 @@
 
 
 
-var ip_address="52.34.147.69";
-var port="5555";
+var ip_address=localStorage.getItem("ip_address");
+var port=localStorage.getItem("port");
 var ip_url="http://"+ip_address+":"+port;
 
 var rest_info=ip_url+"/info";
