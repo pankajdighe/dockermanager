@@ -31,14 +31,51 @@ $(document).ready(function(){
 		getAllInfoImage();
 	}
 	
+	$("#_remove_image_button").click(remove_image);	
+	$("#_history_image_button").click(history_image);	
 });
+
+function history_image(){
+	alert(image_id);
+	$.ajax({
+		url : common_image+"/ubuntu/history",
+		dataType : "json",
+		
+		success:function(result){
+			alert(result);
+			
+			
+		},
+		error:function(){
+			alert('Fail To connect to the Docker API, Please try Again Later!!!');
+		}
+	});
+
+}
+
+
+function remove_image(){
+
+	alert(image_id);
+	$.ajax({
+		url : delete_image+"/"+image_id+"?force=1",
+		data: {'_method': 'delete'},
+		
+		success:function(result){
+			alert("deleted");
+		},
+		error:function(){
+			alert('Fail To connect to the Docker API, Please try Again Later!!!');
+		}
+	});
+
+}
 
 function getAllInfoImage(){
 	
 	$("#_image_name").html(image_name);
 	//$("#_container_image").html(container_image);
 	
-
 	 $.ajax({
 			url :rest_images+"/"+image_id+"/json" ,
 			dataType : "json",
@@ -50,7 +87,6 @@ function getAllInfoImage(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!');
 				  }
 		});
-	
 }
 
 function getAllInfoImageCallback(result){
@@ -70,7 +106,6 @@ function getAllInfoImageCallback(result){
 	$("#_container_restarting").html((result.State.Restarting) ? "Restarting":"Not Restarting");
 	$("#_container_started_at").html(result.State.StartedAt);
 	$("#_container_finished_at").html(result.State.FinishedAt);*/
-	
 }
 
 

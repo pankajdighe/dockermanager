@@ -1,7 +1,7 @@
 	
 
 $(document).ready(function(){
-	alert("volume");
+	//alert("volume");
 	//Call the getContainerInfo()
 	getVolumesInfo();
 	
@@ -16,14 +16,16 @@ function getVolumesInfo()
 				success :function(result) {
 					//Now Set the Values
 
-
 					if(result!=null){
-						//alert(result);
-						$.each( result, function( key, value ) {
+ 
+
+						$.each( result.Volumes, function( key, value ) {
+						
+
 						var volume_template=$("#volume_template").html()
 						.replace(new RegExp("{{volume_number}}","g"),key)
-						.replace(new RegExp("{{volume_name}}","g"),value.RepoTags[0])
-						.replace(new RegExp("{{volume_url}}","g"),"single_volume_management.html?iid="+value.Id);
+						.replace(new RegExp("{{volume_name}}","g"),value.Name);
+						//.replace(new RegExp("{{volume_url}}","g"),"single_volume_management.html?iid="+value.Id);
 						
 						
 						$("#_show_volumes").append(volume_template);						
