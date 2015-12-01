@@ -12,7 +12,8 @@ var rest_list_containers=ip_url+"/containers/json?all=1";
 
 
 var rest_list_images=ip_url+"/images/json?all=0";
-var common_image=ip_url+"images/";
+var common_image=ip_url+"/images/";
+
 
 var rest_list_volumes=ip_url+"/volumes";
 var rest_list_networks=ip_url+"/networks";

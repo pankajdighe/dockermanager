@@ -33,32 +33,79 @@ $(document).ready(function(){
 	
 	$("#_remove_image_button").click(remove_image);	
 	$("#_history_image_button").click(history_image);	
+	$("#_tag_image_button").click(tag_image);	
+	$("#_search_term_button").click(search_term);	
+	
 });
 
-function history_image(){
-	alert(image_id);
+function search_term()
+{
+	var formedURL = common_image+"search?term="+search_term;
+	//alert(formedURL);
 	$.ajax({
-		url : common_image+"/ubuntu/history",
+		url : formedURL,
 		dataType : "json",
 		
 		success:function(result){
-			alert(result);
-			
+			//alert(result);
 			
 		},
 		error:function(){
 			alert('Fail To connect to the Docker API, Please try Again Later!!!');
 		}
 	});
-
 }
 
 
+function history_image(){
+	var formedURL = common_image+"ubuntu/history";
+	//alert(formedURL);
+	$.ajax({
+		url : formedURL,
+		dataType : "json",
+		
+		success:function(result){
+			//alert(result);
+			$("#_image_created").html(result[0].Created);		
+			$("#_image_createdBy").html(result[0].CreatedBy);		
+			$("#_image_tags").html(result[0].Tags);		
+			$("#_image_size").html(result[0].Size);		
+			$("#_image_comment").html(result[0].Comment);		
+		},
+		error:function(){
+			alert('Fail To connect to the Docker API, Please try Again Later!!!');
+		}
+	});
+}
+
+
+function tag_image(){
+
+//	alert(image_id);
+	
+	var formedURL = common_image+"centos/tag?repo=myrestcentos&force=0&tag=v33"
+	alert(formedURL);
+	$.ajax({
+		method:"POST",
+		url : formedURL,
+		dataType : "json",
+		
+		success:function(result){
+			alert(result);
+		},
+		error:function(){
+			alert('Fail To connect to the Docker API, Please try Again Later!!!');
+		}
+	});
+}
+
 function remove_image(){
 
-	alert(image_id);
+
+	var formedURL = common_image+image_id+"?force=1";
+		alert(formedURL);
 	$.ajax({
-		url : delete_image+"/"+image_id+"?force=1",
+		url : formedURL,
 		data: {'_method': 'delete'},
 		
 		success:function(result){
@@ -68,7 +115,6 @@ function remove_image(){
 			alert('Fail To connect to the Docker API, Please try Again Later!!!');
 		}
 	});
-
 }
 
 function getAllInfoImage(){

@@ -15,7 +15,6 @@ function getImagesInfo()
 				success :function(result) {
 					//Now Set the Values
 
-
 					if(result!=null){
 						//alert(result);
 						$.each( result, function( key, value ) {
