@@ -24,8 +24,8 @@ function getVolumesInfo()
 
 						var volume_template=$("#volume_template").html()
 						.replace(new RegExp("{{volume_number}}","g"),key)
-						.replace(new RegExp("{{volume_name}}","g"),value.Name);
-						//.replace(new RegExp("{{volume_url}}","g"),"single_volume_management.html?iid="+value.Id);
+						.replace(new RegExp("{{volume_name}}","g"),value.Name)
+						.replace(new RegExp("{{volume_url}}","g"),"single_volume_management.html?vol_name="+value.Name);
 						
 						
 						$("#_show_volumes").append(volume_template);						

@@ -1,6 +1,7 @@
 //This JS files contains the code to manage the Docker
 
 
+
 $(document).ready(function(){
 
 	var sPageURL = window.location.search.substring(1);
@@ -10,24 +11,17 @@ $(document).ready(function(){
 	{
 		  var sParameterName = sURLVariables[i].split('=');
 
-			if (sParameterName[0] == "nid")
-			{	
-				network_id=sParameterName[1];
-				
-			}
 			
-			if (sParameterName[0] == "name")
+			if (sParameterName[0] == "vol_name")
 			{	
-				network_name=sParameterName[1];
+				volume_name=sParameterName[1];
 				//alert(image_name);
 			}		
  	}
 	
 	
-	if(network_id!=null ){
-		//alert("Got all values");
-		
-		getAllInfoNetwork();
+	if(volume_name!=null ){
+		getAllInfoVolume();
 	}
 	
 	$("#_remove_network_button").click(remove_network);	
@@ -112,17 +106,17 @@ function remove_network(){
 	});
 }
 
-function getAllInfoNetwork(){
+function getAllInfoVolume(){
 	//$("#_network_name").html(network_name);
 	//$("#_container_image").html(container_image);
-	var formedURL = rest_list_networks+"/"+network_id;
+	var formedURL = rest_list_volumes+"/"+volume_name;
 	//alert(formedURL);
 	 $.ajax({
 			url : formedURL,
 			dataType : "json",
 			success :function(result) {
 				//alert(result);
-				getAllInfoNetworkCallback(result);		
+				getAllInfoVolumeCallback(result);		
 			},
 			 error: function(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!');
@@ -130,15 +124,14 @@ function getAllInfoNetwork(){
 		});
 }
 
-function getAllInfoNetworkCallback(result){
+function getAllInfoVolumeCallback(result){
 	
 	//alert(result);
 	//Restart Count
-	$("#_network_name").html(result.Name);
-	$("#_scope_name").html(result.Scope);
+	$("#_volume_name").html(result.Name);
 	$("#_driver_name").html(result.Driver);
-	$("#_subnet").html(result.IPAM.Config[0].Subnet);
-	$("#_gateway").html(result.IPAM.Config[0].Gateway);
+	$("#_mountpoint_name").html(result.Mountpoint);
+	
 	
 	
 	
