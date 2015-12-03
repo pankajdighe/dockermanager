@@ -71,21 +71,21 @@ function create_container(){
 					  }
 			});*/
 			var image=$("#select_image").val();
-			var command=$("#input_command").val();
+			var image_name=$("#image_name").val();
 			var command_array;
 			
-			alert(image+ "  "+command);
+			//alert(image+ "  "+command);
 			
 			
-			if(command!=null){
+			if(image_name){
 			
-			command_array=command.split(",");
+			//command_array=command.split(",");
 			
 			
 			
-				if(command_array.length>0){
+				//if(command_array.length>0){
 				
-							  var data=new Object();
+						/*	  var data=new Object();
 						 data.Image=image;
 						 data.AttachStdin=false;
 						 data.AttachStdout=true;
@@ -93,9 +93,9 @@ function create_container(){
 						 data.Tty=true;
 						 data.Cmd=command_array;
 						 data.OpenStdin=true;
-						 data.StdinOnce=false;
+						 data.StdinOnce=false;*/
 				
-						$.ajax({
+					/*	$.ajax({
 						type:"POST",
 						url :rest_containers+"/create" ,
 						dataType : "json",
@@ -109,7 +109,7 @@ function create_container(){
 						 error: function(){
 								alert('Fail To Connect to the Docker API, Please try Again Later!!!');
 							  }
-					});
+					});*/
 					
 					/*$.post(rest_containers+"/create",
 						{
@@ -119,10 +119,27 @@ function create_container(){
 						function(data, status){
 							alert("Data: " + data + "\nStatus: " + status);
 						});*/
-					
+						
+						
+					    	$.ajax({
+						type:"POST",
+						url :rest_create_container_url+"?url=http://"+ip_address+"&port="+port+"&image="+image+"&image_name="+image_name,
+						//dataType : "json",
+						//contentType:"application/json",
+						//data:data,
+						// crossDomain: true,
+						//data:{"Image":image,"Cmd":["/bin/bash", "-c", "tail -f /var/log/dmesg"]},
+						success :function(result) {
+							getCreateContainerInfoCallback(result);		
+						},
+						 error: function(){
+						 location.reload();
+								//alert('Fail To Connect to the Docker API, Please try Again Later!!!');
+							  }
+					});
 				
 				
-				}
+				//}
 				
 			}
 			//alert(command_array.length);
@@ -134,7 +151,8 @@ function create_container(){
 
 
 function getCreateContainerInfoCallback(result){
-alert("Container Created Successfully!!!");
+//alert("Container Created Successfully!!!");
+location.reload();
 }
 
 

@@ -23,3 +23,5 @@ var get_version=ip_url+"/version";
 
 var rest_containers=ip_url+"/containers";
 var rest_images=ip_url+"/images";
+
+var rest_create_container_url="https://enigmatic-spire-7172.herokuapp.com/create-container";
