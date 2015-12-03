@@ -91,30 +91,33 @@ function tag_image(){
 		dataType : "json",
 		
 		success:function(result){
-			alert(result);
+			$("#message_modal_success_tag").modal();
 		},
 		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
+			$("#message_modal_success_tag").modal();
+			//alert('Fail To connect to the Docker API, Please try Again Later!!!');
 		}
 	});
 }
 
 function remove_image(){
+	var ip="http://52.34.147.69";
+	var port_number=5555;
 
-
-	var formedURL = common_image+image_id+"?force=1";
-		alert(formedURL);
-	$.ajax({
-		url : formedURL,
-		data: {'_method': 'delete'},
+	var formedURL = 'https://enigmatic-spire-7172.herokuapp.com/delete-image?url='+ip+'&port='+port+'&image_name='+image_id;
+	alert(formedURL);	
 		
-		success:function(result){
-			alert("deleted");
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
+	 $.ajax({
+			url :  formedURL,
+			type:"POST",
+			success :function(result) {
+				alert("Image Successfully deleted.");
+				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/image_management.html";
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
+				  }
+		});
 }
 
 function getAllInfoImage(){

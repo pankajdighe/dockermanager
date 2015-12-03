@@ -24,86 +24,33 @@ $(document).ready(function(){
 		getAllInfoVolume();
 	}
 	
-	$("#_remove_network_button").click(remove_network);	
+	$("#_remove_volume_button").click(remove_volume);	
 	$("#_connect_container_to_network").click(connect_container_to_network);	
 	$("#_disconnect_container_to_network").click(disconnect_container_to_network);	
 	//$("#_search_term_button").click(search_term);	
 	
 });
 
-/*function search_term()
-{
-	var formedURL = common_image+"search?term="+search_term;
-	//alert(formedURL);
-	$.ajax({
-		url : formedURL,
-		dataType : "json",
+
+function remove_volume(){
+
+	var ip="http://52.34.147.69";
+	var port_number=5555;
+
+	var formedURL = 'http://d00567e9.ngrok.io/delete-volume?url='+ip+'&port='+port+'&volume_name='+volume_name;
+	alert(formedURL);	
 		
-		success:function(result){
-			//alert(result);
-			
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
-}*/
-
-
-function disconnect_container_to_network(){
-	var formedURL = rest_list_networks+"/"+container_id+"/disconnect";
-	//alert(formedURL);
-	$.ajax({
-		method:"POST",
-		url : formedURL,
-		dataType : "json",
-		
-		success:function(result){
-			alert(result);
-			
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
-}
-
-
-function connect_container_to_network(){
-
-//	alert(image_id);
-	
-	var formedURL = rest_list_networks+"/"+container_id+"/connect";
-	alert(formedURL);
-	$.ajax({
-		method:"POST",
-		url : formedURL,
-		dataType : "json",
-		
-		success:function(result){
-			alert(result);
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
-}
-
-function remove_network(){
-
-	var formedURL = rest_list_networks+"/"+container_id;
-	alert(formedURL);
-	$.ajax({
-		url : formedURL,
-		data: {'_method': 'delete'},
-		
-		success:function(result){
-			alert("deleted");
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
+	 $.ajax({
+			url :  formedURL,
+			type:"POST",
+			success :function(result) {
+				alert("Volume Successfully deleted.");
+				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/volume_management.html";
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
+				  }
+		});
 }
 
 function getAllInfoVolume(){

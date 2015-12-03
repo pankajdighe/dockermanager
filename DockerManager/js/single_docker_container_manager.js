@@ -46,7 +46,7 @@ $(document).ready(function(){
 	$("#_stop_container_button").click(stop_container);
 	$("#_pause_container_button").click(pause_container);
 	$("#_unpause_container_button").click(unpause_container);
-	//$("#_delete_container_button").click(delete_container);
+	$("#_delete_container_button").click(delete_container);
 	$("#_kill_container_button").click(kill_container);
 	$("#_restart_container_button").click(restart_container);
 	
@@ -221,15 +221,18 @@ function unpause_container_callback(result){
 
 
 function delete_container(){
-	
-//	alert("Hello");
-	
+	var ip="http://52.34.147.69";
+	var port_number=5555;
+
+	var formedURL = 'https://enigmatic-spire-7172.herokuapp.com/delete-container?url='+ip+'&port='+port+'&cont_id='+container_id;
+	//alert(formedURL);	
+		
 	 $.ajax({
-			url :rest_containers+"/"+container_id,
-			type:"DELETE",
-			//dataType : "json",
+			url :  formedURL,
+			type:"POST",
 			success :function(result) {
-				delete_container_callback(result);		
+				alert("Container Successfully deleted.");
+				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/container_management.html";
 			},
 			 error: function(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
@@ -237,14 +240,6 @@ function delete_container(){
 		});
 }
 
-
-function delete_container_callback(result){
-	
-	//alert("Successfully Started the Container..");
-	
-	//$("#message_modal_success_delete").modal();
-	location.href="/container_management.html";
-}
 
 function kill_container(){
 	

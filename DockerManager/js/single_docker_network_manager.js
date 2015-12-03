@@ -97,19 +97,23 @@ function connect_container_to_network(){
 
 function remove_network(){
 
-	var formedURL = rest_list_networks+"/"+container_id;
-	alert(formedURL);
-	$.ajax({
-		url : formedURL,
-		data: {'_method': 'delete'},
+	var ip="http://52.34.147.69";
+	var port_number=5555;
+
+	var formedURL = 'http://d00567e9.ngrok.io/delete-network?url='+ip+'&port='+port+'&network_name='+network_id;
+	alert(formedURL);	
 		
-		success:function(result){
-			alert("deleted");
-		},
-		error:function(){
-			alert('Fail To connect to the Docker API, Please try Again Later!!!');
-		}
-	});
+	 $.ajax({
+			url :  formedURL,
+			type:"POST",
+			success :function(result) {
+				alert("Volume Successfully deleted.");
+				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/network_management.html";
+			},
+			 error: function(){
+				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
+				  }
+		});
 }
 
 function getAllInfoNetwork(){
