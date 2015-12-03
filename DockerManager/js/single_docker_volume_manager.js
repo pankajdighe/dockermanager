@@ -45,7 +45,8 @@ function remove_volume(){
 			type:"POST",
 			success :function(result) {
 				alert("Volume Successfully deleted.");
-				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/volume_management.html";
+				//location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/volume_management.html";
+				location.load="volume_management.html";
 			},
 			 error: function(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);

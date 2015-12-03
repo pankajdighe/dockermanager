@@ -108,7 +108,8 @@ function remove_network(){
 			type:"POST",
 			success :function(result) {
 				alert("Volume Successfully deleted.");
-				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/network_management.html";
+				//location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/network_management.html";
+				location.load="network_management.html";
 			},
 			 error: function(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);

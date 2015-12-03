@@ -224,18 +224,20 @@ function delete_container(){
 	var ip="http://52.34.147.69";
 	var port_number=5555;
 
-	var formedURL = 'https://enigmatic-spire-7172.herokuapp.com/delete-container?url='+ip+'&port='+port+'&cont_id='+container_id;
+	var formedURL = 'http://d00567e9.ngrok.io/delete-container?url='+ip+'&port='+port+'&cont_id='+container_id;
 	//alert(formedURL);	
 		
 	 $.ajax({
 			url :  formedURL,
 			type:"POST",
 			success :function(result) {
-				alert("Container Successfully deleted.");
+				//alert("Container Successfully deleted.");
 				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/container_management.html";
+				//location.load="container_management.html";
 			},
 			 error: function(){
-				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
+			 		location.load="container_management.html";
+				    //alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
 				  }
 		});
 }

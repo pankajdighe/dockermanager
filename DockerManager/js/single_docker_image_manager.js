@@ -84,7 +84,7 @@ function tag_image(){
 //	alert(image_id);
 	
 	var formedURL = common_image+"centos/tag?repo=myrestcentos&force=0&tag=v33"
-	alert(formedURL);
+	//alert(formedURL);
 	$.ajax({
 		method:"POST",
 		url : formedURL,
@@ -104,15 +104,17 @@ function remove_image(){
 	var ip="http://52.34.147.69";
 	var port_number=5555;
 
-	var formedURL = 'https://enigmatic-spire-7172.herokuapp.com/delete-image?url='+ip+'&port='+port+'&image_name='+image_id;
-	alert(formedURL);	
+	var formedURL = 'http://d00567e9.ngrok.io/delete-image?url='+ip+'&port='+port+'&image_name='+image_id;
+	//alert(formedURL);	
 		
 	 $.ajax({
 			url :  formedURL,
 			type:"POST",
 			success :function(result) {
-				$("#message_modal_success_delete").modal();
-				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/image_management.html";
+				//alert("Image Successfully deleted.");
+			    $("#message_modal_success_delete").modal();				
+				//location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/image_management.html";
+				location.load="image_management.html";
 			},
 			 error: function(){
 				    alert('Fail To Connect to the Docker API, Please try Again Later!!!'+"  "+rest_containers+"/"+container_id);
