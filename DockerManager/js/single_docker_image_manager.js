@@ -111,7 +111,7 @@ function remove_image(){
 			url :  formedURL,
 			type:"POST",
 			success :function(result) {
-				alert("Image Successfully deleted.");
+				$("#message_modal_success_delete").modal();
 				location.href="/Users/Hardik/GitHub/dockermanager/DockerManager/pages/image_management.html";
 			},
 			 error: function(){
